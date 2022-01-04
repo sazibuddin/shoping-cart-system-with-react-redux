@@ -20,4 +20,5 @@ const mapStateToProos = state => {
     products: state.shop.products,
   }
 }
+
 export default connect(mapStateToProos)(Products);

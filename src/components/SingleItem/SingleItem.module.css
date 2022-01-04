@@ -46,3 +46,11 @@
 .details__addBtn:hover {
   opacity: 0.75;
 }
+.not_found {
+  text-align: center;
+  margin: auto;
+  padding-top: 200px;
+}
+.not_found_h1 {
+  margin-bottom: 20px;
+}

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./Product.module.css";
 
 import { connect } from "react-redux";
-import { addToCart } from "../../../store/reducers/shopping/shoppingActions";
+import { addToCart, loadCurrentItem } from "../../../store/reducers/shopping/shoppingActions";
 
-const Product = ({product,addToCart}) => {
+const Product = ({product,addToCart, loadCurrentItem}) => {
   return (
     <div className={styles.product}>
       <img className={styles.product__image} src={ product.image } alt="" />
@@ -17,8 +17,8 @@ const Product = ({product,addToCart}) => {
       </div>
 
       <div className={styles.product__buttons}>
-        <Link to={`/product/someID`}>
-          <button className={`${styles.buttons__btn} ${styles.buttons__view}`}>
+        <Link to={`/product/${product.id}`}>
+          <button onClick={() => loadCurrentItem(product) } className={`${styles.buttons__btn} ${styles.buttons__view}`}>
             View Item
           </button>
         </Link>
@@ -33,6 +33,7 @@ const Product = ({product,addToCart}) => {
 const mapDispatchToProps  = dispatch => {
     return {
       addToCart: (id) => dispatch(addToCart(id)),
+      loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
     }
 }
 

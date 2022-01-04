@@ -66,11 +66,26 @@
 }
 
 .actions__deleteItemBtn:hover {
-  transform: scale(1.2) rotate(360deg);
-  background-color: rgb(209, 15, 15);
+  /* transform: scale(1.2) rotate(360deg); */
+  background-color: rgb(98 42 232);
 }
 
 .actions__deleteItemBtn img {
   width: 25px;
   height: 25px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .cartItem {
+    flex-direction: column;
+  }
+  .cartItem__actions {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .details__price {
+    margin-top: 10px;
+  }
 }

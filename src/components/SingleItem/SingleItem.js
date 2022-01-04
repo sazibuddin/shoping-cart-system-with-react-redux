@@ -1,19 +1,47 @@
 import React from "react";
 import styles from "./SingleItem.module.css";
 
-const SingleItem = () => {
-  return (
-    <div className={styles.singleItem}>
-      <img className={styles.singleItem__image} src="https://micoedward.com/wp-content/uploads/2018/04/Love-your-product.png" alt="" />
-      <div className={styles.singleItem__details}>
-        <p className={styles.details__title}>Title</p>
-        <p className={styles.details__description}>Description</p>
-        <p className={styles.details__price}>$ 10.00</p>
+import { connect } from "react-redux";
 
-        <button className={styles.details__addBtn}>Add To Cart</button>
-      </div>
-    </div>
+import { addToCart } from "../../store/reducers/shopping/shoppingActions";
+import { Link } from "react-router-dom";
+
+const SingleItem = ({currentItem,addToCart}) => {
+  return (
+    
+     <div>
+        {currentItem != null ? (
+        <div className={styles.singleItem}>
+          <img className={styles.singleItem__image} src={currentItem.image} alt="" />
+        <div className={styles.singleItem__details}>
+          <p className={styles.details__title}>{currentItem.title}</p>
+          <p className={styles.details__description}>{currentItem.description}</p>
+          <p className={styles.details__price}>$ {currentItem.price}</p>
+  
+          <button onClick={() => addToCart(currentItem.id)} className={styles.details__addBtn}>Add To Cart</button>
+        </div>
+       </div>
+      ) : (
+        <div className={styles.not_found}>
+          <h1 className={styles.not_found_h1}>Sorry ! something went wrong. please try again</h1>
+          <Link to='/'>Go to home</Link>
+        </div>
+      )}
+     </div>
+      
   );
 };
 
-export default SingleItem;
+const mapStateToProos = state => {
+  return {
+    currentItem: state.shop.currentItem
+  }
+};
+
+const mapDispatchToProps  = dispatch => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  }
+}
+
+export default connect(mapStateToProos,mapDispatchToProps)(SingleItem);

@@ -67,3 +67,24 @@
   background: var(--secondary-color);
   color: var(--light-color);
 }
+
+
+@media only screen and (max-width: 768px) {
+  .product {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .product__image {
+    width: 100%;
+  }
+  .product__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.details__price {
+  margin-top: 10px;
+}
+}
